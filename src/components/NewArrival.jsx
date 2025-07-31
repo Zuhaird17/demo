@@ -1,0 +1,100 @@
+// NewArrival.jsx
+import { useRef } from 'react';
+import {
+  img1, img2, img3, img4, img5, img6, img7, img8
+} from '../assets/Index';
+import leftArrow from '../assets/left-arrow.svg';
+import rightArrow from '../assets/right-arrow.svg';
+import wishIcon from '../assets/wishlist-icon.svg';
+import compareIcon from '../assets/compare-icon.svg';
+import cartIcon from '../assets/icon_cart.svg';
+import Container from './Container';
+
+const products = [
+  { id: 1, name: 'Product 1', image: img1, price: '$44.00' },
+  { id: 2, name: 'Product 2', image: img2, price: '$44.00' },
+  { id: 3, name: 'Product 3', image: img3, price: '$44.00' },
+  { id: 4, name: 'Product 4', image: img4, price: '$44.00' },
+  { id: 5, name: 'Product 5', image: img5, price: '$44.00' },
+  { id: 6, name: 'Product 6', image: img6, price: '$44.00' },
+  { id: 7, name: 'Product 7', image: img7, price: '$44.00' },
+  { id: 8, name: 'Product 8', image: img8, price: '$44.00' },
+];
+
+export default function NewArrival() {
+  const scrollRef = useRef(null);
+  const cardWidth = 300;
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -cardWidth : cardWidth,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  return (
+    <div className="max-w-[1920px] mx-auto w-full bg-white">
+      <Container>
+        <div className="w-full px-12 py-10 relative">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold">New Arrival</h2>
+          </div>
+          <div className="relative">
+            <button
+              onClick={() => scroll('left')}
+              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-2 rounded-full z-10"
+            >
+              <img src={leftArrow} alt="Left" className="w-8 h-8" />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-2 rounded-full z-10"
+            >
+              <img src={rightArrow} alt="Right" className="w-8 h-8" />
+            </button>
+            <div
+              ref={scrollRef}
+              className="flex overflow-x-auto gap-6 scroll-smooth"
+            >
+              {products.map((product) => (
+                <div key={product.id} className="w-[280px] flex-shrink-0">
+                  <div className="relative">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="rounded-md object-cover w-full h-[250px] bg-white"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-end pr-4 space-y-2 text-gray-600">
+                      <div className="flex items-center gap-2 hover:text-gray-800 text-sm cursor-pointer">
+                        <span>Add to Wish List</span>
+                        <img src={wishIcon} alt="Wish" className="w-4 h-4" />
+                      </div>
+                      <div className="flex items-center gap-2 hover:text-gray-800 text-sm cursor-pointer">
+                        <span>Compare</span>
+                        <img src={compareIcon} alt="Compare" className="w-4 h-4" />
+                      </div>
+                      <div className="flex items-center gap-2 hover:text-gray-800 text-sm cursor-pointer">
+                        <span>Add to Cart</span>
+                        <img src={cartIcon} alt="Cart" className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between mt-2 px-1">
+                    <span className="text-lg font-medium text-gray-800">
+                      {product.name}
+                    </span>
+                    <span className="text-md text-gray-600">
+                      {product.price}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </div>
+  );
+}
