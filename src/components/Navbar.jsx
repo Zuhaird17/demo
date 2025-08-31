@@ -1,12 +1,11 @@
 // Navbar.jsx
-import { useState, useRef } from "react";
-import MenuIcon from "../assets/Icon.svg";
-import UserIcon from "../assets/Shape.svg";
-import DownArrowIcon from "../assets/Path.svg";
-import CartIcon from "../assets/icon_cart.svg";
-import CloseIcon from "../assets/CloseIcon.svg";
-import SearchIcon from "../assets/Search.svg";
-import Container from "./Container";
+import { useState, useRef } from 'react';
+import UserIcon from '../assets/Shape.svg';
+import DownArrowIcon from '../assets/Path.svg';
+import CartIcon from '../assets/icon_cart.svg';
+import CloseIcon from '../assets/CloseIcon.svg';
+import SearchIcon from '../assets/Search.svg';
+import Container from './Container';
 
 const Navbar = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);

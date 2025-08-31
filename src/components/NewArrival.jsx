@@ -1,13 +1,20 @@
-// NewArrival.jsx
 import { useRef } from 'react';
 import {
   img1, img2, img3, img4, img5, img6, img7, img8
 } from '../assets/Index';
+
 import leftArrow from '../assets/left-arrow.svg';
 import rightArrow from '../assets/right-arrow.svg';
 import wishIcon from '../assets/wishlist-icon.svg';
 import compareIcon from '../assets/compare-icon.svg';
 import cartIcon from '../assets/icon_cart.svg';
+
+
+import special1 from '../assets/special1.svg';
+import special2 from '../assets/special2.svg';
+import special3 from '../assets/special3.svg';
+import special4 from '../assets/special4.svg';
+
 import Container from './Container';
 
 const products = [
@@ -59,7 +66,7 @@ export default function NewArrival() {
               className="flex overflow-x-auto gap-6 scroll-smooth"
             >
               {products.map((product) => (
-                <div key={product.id} className="w-[280px] flex-shrink-0">
+                <div key={product.id} className="w-[280px] flex-shrink-0 group">
                   <div className="relative">
                     <img
                       src={product.image}
@@ -95,6 +102,49 @@ export default function NewArrival() {
           </div>
         </div>
       </Container>
+
+      {/* Special Offers Section */}
+      <div className="max-w-[1280px] mx-auto w-full bg-white">
+        <div className="mx-auto px-4 sm:px-8 lg:px-16 py-10">
+          <h2 className="text-[#262626] text-2xl sm:text-3xl lg:text-[39px] font-semibold mb-6">
+            Special Offers
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[special1, special2, special3, special4].map((img, idx) => (
+              <div
+                key={idx}
+                className="group bg-white shadow hover:shadow-lg rounded-md overflow-hidden relative transition duration-300"
+              >
+                <div className="overflow-hidden">
+                  <img
+                    src={img}
+                    alt={`Special Product ${idx + 1}`}
+                    className="w-full h-60 object-cover transform group-hover:scale-105 transition duration-500"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-gray-800 font-semibold text-sm">
+                    Special Product {idx + 1}
+                  </h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    ${[29.99, 49.99, 19.99, 39.99][idx]}
+                  </p>
+                </div>
+                <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 flex flex-col justify-center items-center gap-2 transition duration-300">
+                  <button className="bg-white text-black text-xs px-4 py-2 rounded hover:bg-black hover:text-white transition flex items-center gap-2">
+                    <img src={cartIcon} alt="Cart" className="w-4 h-4" />
+                    <span>Add to Cart</span>
+                  </button>
+                  <button className="bg-white text-black text-xs px-4 py-1 rounded hover:bg-black hover:text-white transition flex items-center gap-2">
+                    <img src={wishIcon} alt="Wishlist" className="w-4 h-4" />
+                    <span>Wishlist</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

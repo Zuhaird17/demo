@@ -5,7 +5,7 @@ import Container from './Container';
 
 const Header = () => {
   return (
-    <div className="max-w-[1920px] mx-auto w-full relative">
+    <div className="max-w-[1280px] mx-auto w-full relative">
       <Container>
         <header className="bg-white p-6 flex justify-between items-center">
           <div className="logo">
