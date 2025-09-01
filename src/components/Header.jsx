@@ -1,6 +1,4 @@
-// Header.jsx
-// import { useState } from 'react';
-import Logo from "../assets/logo.svg";
+import Logo from '../assets/logo.svg';
 import Container from './Container';
 
 const Header = () => {
@@ -23,7 +21,7 @@ const Header = () => {
                 <li key={index}>
                   <a
                     href={item.link}
-                    className="px-4 py-2 text-gray-600 transition hover:bg-black/35 hover:text-white"
+                    className="px-4 py-2 text-gray-600 transition hover:bg-black/35 rounded-2xl hover:text-white"
                   >
                     {item.name}
                   </a>

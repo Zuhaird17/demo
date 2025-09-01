@@ -1,19 +1,19 @@
 // Banner.jsx
-import { useEffect, useState } from "react";
-import WarrantyIcon from "../assets/2.svg";
-import TruckIcon from "../assets/truck.svg";
-import UndoIcon from "../assets/undo.svg";
-import Ad1 from "../assets/Ad_1.svg";
-import Ad2 from "../assets/Ad_2.svg";
-import Ad3 from "../assets/Ad_3.svg";
-import Container from "./Container";
+import { useEffect, useState } from 'react';
+import WarrantyIcon from '../assets/2.svg';
+import TruckIcon from '../assets/truck.svg';
+import UndoIcon from '../assets/undo.svg';
+import Ad1 from '../assets/Ad_1.svg';
+import Ad2 from '../assets/Ad_2.svg';
+import Ad3 from '../assets/Ad_3.svg';
+import Container from './Container';
 
 const slides = [
-  { id: 1, image: "/ban.svg" },
-  { id: 2, image: "/ban.svg" },
-  { id: 3, image: "/ban.svg" },
-  { id: 4, image: "/ban.svg" },
-  { id: 5, image: "/ban.svg" },
+  { id: 1, image: '/ban.svg' },
+  { id: 2, image: '/ban.svg' },
+  { id: 3, image: '/ban.svg' },
+  { id: 4, image: '/ban.svg' },
+  { id: 5, image: '/ban.svg' },
 ];
 
 const Banner = () => {
