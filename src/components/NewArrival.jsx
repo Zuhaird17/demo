@@ -1,4 +1,6 @@
-import { useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
+
 import {
   img1, img2, img3, img4, img5, img6, img7, img8
 } from '../assets/Index';
@@ -9,7 +11,6 @@ import wishIcon from '../assets/wishlist-icon.svg';
 import compareIcon from '../assets/compare-icon.svg';
 import cartIcon from '../assets/icon_cart.svg';
 
-
 import special1 from '../assets/special1.svg';
 import special2 from '../assets/special2.svg';
 import special3 from '../assets/special3.svg';
@@ -17,20 +18,23 @@ import special4 from '../assets/special4.svg';
 
 import Container from './Container';
 
-const products = [
-  { id: 1, name: 'Product 1', image: img1, price: '$44.00' },
-  { id: 2, name: 'Product 2', image: img2, price: '$44.00' },
-  { id: 3, name: 'Product 3', image: img3, price: '$44.00' },
-  { id: 4, name: 'Product 4', image: img4, price: '$44.00' },
-  { id: 5, name: 'Product 5', image: img5, price: '$44.00' },
-  { id: 6, name: 'Product 6', image: img6, price: '$44.00' },
-  { id: 7, name: 'Product 7', image: img7, price: '$44.00' },
-  { id: 8, name: 'Product 8', image: img8, price: '$44.00' },
-];
-
 export default function NewArrival() {
+  const [products, setProducts] = useState([]);  // State to store fetched products
   const scrollRef = useRef(null);
   const cardWidth = 300;
+
+  // Fetch products from a fake REST API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('https://fakestoreapi.com/products'); 
+        setProducts(response.data);  // Set products from the API response
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -50,17 +54,19 @@ export default function NewArrival() {
           </div>
           <div className="relative">
             <button
-              onClick={() => scroll('left')}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-2 rounded-full z-10"
-            >
-              <img src={leftArrow} alt="Left" className="w-8 h-8" />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-2 rounded-full z-10"
-            >
-              <img src={rightArrow} alt="Right" className="w-8 h-8" />
-            </button>
+  onClick={() => scroll('left')}
+  className="absolute left-0 top-[150px] -translate-y-2/2 bg-white shadow-md p-2 rounded-full z-10"
+>
+  <img src={leftArrow} alt="Left" className="w-8 h-8" />
+</button>
+
+<button
+  onClick={() => scroll('right')}
+  className="absolute right-0 top-[150px] -translate-y-2/2 bg-white shadow-md p-2 rounded-full z-10"
+>
+  <img src={rightArrow} alt="Right" className="w-8 h-8" />
+</button>
+
             <div
               ref={scrollRef}
               className="flex overflow-x-auto gap-6 scroll-smooth"
@@ -69,8 +75,8 @@ export default function NewArrival() {
                 <div key={product.id} className="w-[280px] flex-shrink-0 group">
                   <div className="relative">
                     <img
-                      src={product.image}
-                      alt={product.name}
+                      src={product.image || img1}  // Use the product image, or fallback to img1 if unavailable
+                      alt={product.title}
                       className="rounded-md object-cover w-full h-[250px] bg-white"
                     />
                     <div className="absolute bottom-0 left-0 right-0 h-[40%] bg-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-end pr-4 space-y-2 text-gray-600">
@@ -90,10 +96,10 @@ export default function NewArrival() {
                   </div>
                   <div className="flex justify-between mt-2 px-1">
                     <span className="text-lg font-medium text-gray-800">
-                      {product.name}
+                      {product.title}
                     </span>
                     <span className="text-md text-gray-600">
-                      {product.price}
+                      ${product.price}
                     </span>
                   </div>
                 </div>
